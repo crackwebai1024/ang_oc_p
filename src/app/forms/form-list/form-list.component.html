@@ -1,0 +1,55 @@
+<div class="animated fadeIn">
+  <div class="row mt-3 mb-4">
+    <div class="col hidden-sm-down"></div>
+    <div class="col-xl-8 col-md-10 col-sm-12">
+      <div class="row">
+        <div class="col-6">
+          <h3 class="mb-4">{{ title }}</h3>
+        </div>
+        <div class="col-6 text-right align-self-center">
+          <div class="btn-group" dropdown>
+            <button id="button-basic" dropdownToggle type="button" class="btn btn-outline-info dropdown-toggle" aria-controls="dropdown-basic">
+              New Credit App
+              <span class="caret"></span>
+            </button>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+              <li role="menuitem" *ngFor="let template of templates">
+                <div class="btn-group d-flex" role="group" aria-label="New Credit App">
+                  <button type="button" class="btn btn-light w-100 text-left" [routerLink]="['/form-new', template.id]" style="border-right: 1px solid #383e4b; border-radius: 0;">
+                    <i class="fa fa-list-alt" style="color: #383e4b;"></i>
+                    {{ template.templateName }}
+                  </button>
+                  <button type="button" (click)="downloadPdf(template.id, template.templateName, $event)" class="btn btn-secondary" style="border-left: 1px solid #383e4b; border-radius: 0;"><i class="fa fa-download" style="color: #383e4b;"></i></button>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col hidden-sm-down"></div>
+  </div>
+  <div class="row mt-3">
+    <div class="col hidden-sm-down"></div>
+    <div class="col-xl-8 col-md-10 col-sm-12">
+      <ul class="summary-list" *ngFor="let creditApp of creditApps">
+        <form-list-item [creditApp]="creditApp" (deleteTrigger)="deleteTrigger($event)"></form-list-item>
+      </ul>
+    </div>
+    <div class="col hidden-sm-down"></div>
+  </div>
+</div>
+
+<ng-template #modalTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Confirm Delete</h4>
+  </div>
+  <div class="modal-body">
+    Are you sure you want to delete <b>{{ deletedItemName }}</b>?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="confirmDelete()">Yes</button>
+    &nbsp;&nbsp;
+    <button type="button" class="btn btn-primary" (click)="declineDelete()">No</button>
+  </div>
+</ng-template>

@@ -1,0 +1,30 @@
+// Theme colors
+$blue:                            #06537D;
+$red:                             #ff4f1a;
+$cyan:                            rgb(65, 122, 153);
+$yellow:                          #FFC939;
+$green:                           rgb(83, 185, 106);
+$indigo:                          #6610f2;
+$purple:                          #6f42c1;
+$pink:                            #e83e8c;
+$orange:                          #FF8B00;
+$teal:                            #20c997;
+
+// Toaster overrides
+$toaster-default: $blue !default;
+$toaster-success: $green !default;
+$toaster-error: $red !default;
+$toaster-info: $cyan !default;
+$toaster-wait: $indigo !default;
+$toaster-warning: $yellow !default;
+
+
+// Toaster defaults
+// $toaster-default: #030303 !default;
+// $toaster-success: #51a351 !default;
+// $toaster-error: #bd362f !default;
+// $toaster-info: #2f96b4 !default;
+// $toaster-wait: #2f96b4 !default;
+// $toaster-warning: #f89406 !default;
+
+// $toaster-text-color: #ffffff !default;

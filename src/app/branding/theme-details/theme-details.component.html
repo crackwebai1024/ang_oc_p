@@ -1,0 +1,468 @@
+<div class="row">
+  <div class="col-12 text-right align-self-middle">
+    <div class="btn-group" role="group" aria-label="Basic example" dropdown placement="bottom right">
+      <button type="button" class="btn btn-theme whitespace-nowrap" (click)="previewTheme()">
+        <i class="fa fa-desktop" aria-hidden="true"></i>
+        Preview
+      </button>
+      <button type="button" class="btn btn-theme whitespace-nowrap" (click)="resetTheme()">
+        <i class="fa fa-undo" aria-hidden="true"></i>
+        Reset
+      </button>
+      <button type="button" class="btn btn-theme whitespace-nowrap" (click)="saveTheme()">
+        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        Save
+      </button>
+      <div class="btn-group" dropdown>
+        <button type="button" class="btn btn-theme dropdown-toggle whitespace-nowrap" dropdownToggle >
+          <i class="fa fa-th-large" aria-hidden="true"></i>
+          Examples
+        </button>
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+          <li role="menuitem"><a class="dropdown-item dropdown-item-theme" href="#" (click)="loadExample($event)" data-theme="default">
+            <i class="fa fa-th-large" style="color: #29B6F6"></i>Default
+          </a></li>
+          <li role="menuitem"><a class="dropdown-item dropdown-item-theme" href="#" (click)="loadExample($event)" data-theme="indigo">
+            <i class="fa fa-th-large" style="color: #3F51B5"></i>Indigo
+          </a></li>
+          <li role="menuitem"><a class="dropdown-item dropdown-item-theme" href="#" (click)="loadExample($event)" data-theme="red">
+            <i class="fa fa-th-large" style="color: #ef5350"></i>Red
+          </a></li>
+          <li role="menuitem"><a class="dropdown-item dropdown-item-theme" href="#" (click)="loadExample($event)" data-theme="purple">
+            <i class="fa fa-th-large" style="color: #7E57C2"></i>Deep Purple
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+      <div class="form-group">
+          <input [attr.disabled]="theme.displayName === 'default' ? '' : null" 
+          type="text" class="form-control" 
+          id="exampleInputPassword1" 
+          [value]="theme.displayName" 
+          (input)="theme.displayName = $event.target.value"
+          (keydown)="displayNameKeydownEvent($event)">
+        </div>
+  </div>
+  <div class="card-body">
+		<div class="alert alert-warning" role="alert" *ngIf="this.theme.isEdited">
+				Your changes will not occur until you click save.
+		</div>
+		<div class="alert alert-light" role="alert" *ngIf="!this.theme.isEdited">
+				Your changes will not occur until you click save.
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <h5>Logo</h5>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="file-{{ uid }}" accept="image/png" (change)="onFileChange($event.target)">
+                  <label class="custom-file-label" for="file-{{ uid }}">{{ fileInputLabel }}</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div id="preview-{{ uid }}" class="img-preview container d-flex">
+                <div class="justify-content-center align-self-center w-100">
+                  <p class="text-center" *ngIf="!imgLoaded">Image Preview</p>
+                </div>
+              </div>
+              <div class="text-center" *ngIf="imgLoaded">
+                <span class="p3" [ngClass]="{'bg-secondary': (theme.logoAlignment === 'left center')}" >
+                  <i class="fa fa-align-left m-1 cursor-pointer" (click)="alignLogoEvent('left center')"></i>
+                </span>
+                <span class="p3" [ngClass]="{'bg-secondary': (theme.logoAlignment === 'center center')}" >
+                  <i class="fa fa-align-center m-1 cursor-pointer" (click)="alignLogoEvent('center center')"></i>
+              </span>
+                <span class="p3" [ngClass]="{'bg-secondary': (theme.logoAlignment === 'right center')}" >
+                  <i class="fa fa-align-right m-1 cursor-pointer" (click)="alignLogoEvent('right center')"></i>
+              </span>
+              </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+          <div class="col-sm-6">
+              <h5>Logo Pattern</h5>
+              <div class="form-group" [ngClass]="{'d-none': !imgLoaded}">
+                <label for="size-{{ uid }}" class="mr-2">Size</label>
+                -
+                <label for="size-{{ uid }}" class="ml-2">{{ ((theme.logoPatternSize === "" || theme.logoPatternSize === null) ? "auto" : theme.logoPatternSize)  }}</label>
+                <input 
+                  type="range" 
+                  class="custom-range" 
+                  id="size-{{ uid }}" 
+                  min="{{ sizeMin }}" 
+                  max="{{ sizeMax }}" 
+                  [value]="theme.logoPatternSize.replace('px','')"
+                  (input)="changeSizeEvent($event.target.value,'size')">
+              </div>
+              <div class="form-group" [ngClass]="{'d-none': !imgLoaded}">
+                  <label for="opacity-{{ uid }}" class="mr-2">Opacity</label>
+                  -
+                  <label for="opacity-{{ uid }}" class="ml-2">{{ (theme.logoPatternOpacity === "" || theme.logoPatternOpacity === null) ? "0.1" : theme.logoPatternOpacity }}</label>
+                  <input 
+                    type="range" 
+                    class="custom-range" 
+                    id="opacity-{{ uid }}" 
+                    min="{{ opacityMin }}" 
+                    max="{{ opacityMax }}" 
+                    [value]="opacityValue"
+                    (input)="changeSizeEvent($event.target.value, 'opacity')">
+                </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="img-preview container d-flex position-relative overflow-hidden">
+                  <div id="pattern-{{ uid }}" class="background-print-preview"></div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h5>Header</h5>
+              <div class="row align-items-start">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Logo Background</label>
+                    <div class="">
+                      <input [(colorPicker)]="theme.navbarBrandBg"
+                        [cpPosition]="'bottom'"
+                        [cpOKButton]="true"
+                        [cpOKButtonClass]="'btn btn-theme'"
+                        [cpCancelButton]="true"
+                        [cpCancelButtonClass]="'btn btn-theme'"
+                        [cpSaveClickOutside]="false"
+                        [style.background]="theme.navbarBrandBg"
+                        (colorPickerSelect)="onColorSelect()"
+                        class="form-control form-control-sm pointer"
+                        />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Background</label>
+                    <div class="">
+                      <input [(colorPicker)]="theme.navbarBg"
+                        [cpPosition]="'bottom'"
+                        [cpOKButton]="true"
+                        [cpOKButtonClass]="'btn btn-theme'"
+                        [cpCancelButton]="true"
+                        [cpCancelButtonClass]="'btn btn-theme'"
+                        [cpSaveClickOutside]="false"
+                        [style.background]="theme.navbarBg"
+                        (colorPickerSelect)="onColorSelect()"
+                        class="form-control form-control-sm pointer"
+                        />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Link</label>
+                    <div class="">
+                      <input [(colorPicker)]="theme.navbarColor"
+                        [cpPosition]="'bottom'"
+                        [cpOKButton]="true"
+                        [cpOKButtonClass]="'btn btn-theme'"
+                        [cpCancelButton]="true"
+                        [cpCancelButtonClass]="'btn btn-theme'"
+                        [cpSaveClickOutside]="false"
+                        [style.background]="theme.navbarColor"
+                        (colorPickerSelect)="onColorSelect()"
+                        class="form-control form-control-sm pointer"
+                        />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Link Hover</label>
+                    <div class="">
+                      <input [(colorPicker)]="theme.navbarHoverColor"
+                        [cpPosition]="'bottom'"
+                        [cpOKButton]="true"
+                        [cpOKButtonClass]="'btn btn-theme'"
+                        [cpCancelButton]="true"
+                        [cpCancelButtonClass]="'btn btn-theme'"
+                        [cpSaveClickOutside]="false"
+                        [style.background]="theme.navbarHoverColor"
+                        (colorPickerSelect)="onColorSelect()"
+                        class="form-control form-control-sm pointer"
+                        />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Link Active</label>
+                    <div class="">
+                      <input [(colorPicker)]="theme.navbarActiveColor"
+                        [cpPosition]="'bottom'"
+                        [cpOKButton]="true"
+                        [cpOKButtonClass]="'btn btn-theme'"
+                        [cpCancelButton]="true"
+                        [cpCancelButtonClass]="'btn btn-theme'"
+                        [cpSaveClickOutside]="false"
+                        [style.background]="theme.navbarActiveColor"
+                        (colorPickerSelect)="onColorSelect()"
+                        class="form-control form-control-sm pointer"
+                        />
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5>Footer</h5>
+              <div class="row align-items-start">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Background</label>
+                    <input [(colorPicker)]="theme.footerBg"
+                      [cpPosition]="'top'"
+                      [cpOKButton]="true"
+                      [cpOKButtonClass]="'btn btn-theme'"
+                      [cpCancelButton]="true"
+                      [cpCancelButtonClass]="'btn btn-theme'"
+                      [cpSaveClickOutside]="false"
+                      [style.background]="theme.footerBg"
+                      (colorPickerSelect)="onColorSelect()"
+                      class="form-control form-control-sm pointer"/>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Text</label>
+                    <input [(colorPicker)]="theme.footerColor"
+                      [cpPosition]="'top'"
+                      [cpOKButton]="true"
+                      [cpOKButtonClass]="'btn btn-theme'"
+                      [cpCancelButton]="true"
+                      [cpCancelButtonClass]="'btn btn-theme'"
+                      [cpSaveClickOutside]="false"
+                      [style.background]="theme.footerColor"
+                      (colorPickerSelect)="onColorSelect()"
+                      class="form-control form-control-sm pointer"/>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h5>Side Panel <small>admin only</small></h5>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Background</label>
+                    <input [(colorPicker)]="theme.sidebarBg"
+                      [cpPosition]="'bottom'"
+                      [cpOKButton]="true"
+                      [cpOKButtonClass]="'btn btn-theme'"
+                      [cpCancelButton]="true"
+                      [cpCancelButtonClass]="'btn btn-theme'"
+                      [cpSaveClickOutside]="false"
+                      [style.background]="theme.sidebarBg"
+                      (colorPickerSelect)="onColorSelect()"
+                      class="form-control form-control-sm pointer"
+                      />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Title</label>
+                    <input [(colorPicker)]="theme.sidebarNavTitleColor"
+                      [cpPosition]="'bottom'"
+                      [cpOKButton]="true"
+                      [cpOKButtonClass]="'btn btn-theme'"
+                      [cpCancelButton]="true"
+                      [cpCancelButtonClass]="'btn btn-theme'"
+                      [cpSaveClickOutside]="false"
+                      [style.background]="theme.sidebarNavTitleColor"
+                      (colorPickerSelect)="onColorSelect()"
+                      class="form-control form-control-sm pointer"
+                      />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Link</label>
+                    <input [(colorPicker)]="theme.sidebarNavLinkColor"
+                      [cpPosition]="'bottom'"
+                      [cpOKButton]="true"
+                      [cpOKButtonClass]="'btn btn-theme'"
+                      [cpCancelButton]="true"
+                      [cpCancelButtonClass]="'btn btn-theme'"
+                      [cpSaveClickOutside]="false"
+                      [style.background]="theme.sidebarNavLinkColor"
+                      (colorPickerSelect)="onColorSelect()"
+                      class="form-control form-control-sm pointer"/>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group ">
+                    <label class="col-form-label">Link Icon</label>
+                    <input [(colorPicker)]="theme.sidebarNavLinkIconColor"
+                      [cpPosition]="'bottom'"
+                      [cpOKButton]="true"
+                      [cpOKButtonClass]="'btn btn-theme'"
+                      [cpCancelButton]="true"
+                      [cpCancelButtonClass]="'btn btn-theme'"
+                      [cpSaveClickOutside]="false"
+                      [style.background]="theme.sidebarNavLinkIconColor"
+                      (colorPickerSelect)="onColorSelect()"
+                      class="form-control form-control-sm pointer"/>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Link Hover</label>
+                    <input [(colorPicker)]="theme.sidebarNavLinkHoverColor"
+                      [cpPosition]="'bottom'"
+                      [cpOKButton]="true"
+                      [cpOKButtonClass]="'btn btn-theme'"
+                      [cpCancelButton]="true"
+                      [cpCancelButtonClass]="'btn btn-theme'"
+                      [cpSaveClickOutside]="false"
+                      [style.background]="theme.sidebarNavLinkHoverColor"
+                      (colorPickerSelect)="onColorSelect()"
+                      class="form-control form-control-sm pointer"/>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Link Hover Icon</label>
+                    <input [(colorPicker)]="theme.sidebarNavLinkHoverIconColor"
+                      [cpPosition]="'bottom'"
+                      [cpOKButton]="true"
+                      [cpOKButtonClass]="'btn btn-theme'"
+                      [cpCancelButton]="true"
+                      [cpCancelButtonClass]="'btn btn-theme'"
+                      [cpSaveClickOutside]="false"
+                      [style.background]="theme.sidebarNavLinkHoverIconColor"
+                      (colorPickerSelect)="onColorSelect()"
+                      class="form-control form-control-sm pointer"/>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Link Hover Background</label>
+                    <input [(colorPicker)]="theme.sidebarNavLinkHoverBg"
+                      [cpPosition]="'top'"
+                      [cpOKButton]="true"
+                      [cpOKButtonClass]="'btn btn-theme'"
+                      [cpCancelButton]="true"
+                      [cpCancelButtonClass]="'btn btn-theme'"
+                      [cpSaveClickOutside]="false"
+                      [style.background]="theme.sidebarNavLinkHoverBg"
+                      (colorPickerSelect)="onColorSelect()"
+                      class="form-control form-control-sm pointer"/>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Link Active</label>
+                    <input [(colorPicker)]="theme.sidebarNavLinkActiveColor"
+                      [cpPosition]="'top'"
+                      [cpOKButton]="true"
+                      [cpOKButtonClass]="'btn btn-theme'"
+                      [cpCancelButton]="true"
+                      [cpCancelButtonClass]="'btn btn-theme'"
+                      [cpSaveClickOutside]="false"
+                      [style.background]="theme.sidebarNavLinkActiveColor"
+                      (colorPickerSelect)="onColorSelect()"
+                      class="form-control form-control-sm pointer"/>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Link Active Icon</label>
+                    <input [(colorPicker)]="theme.sidebarNavLinkActiveIconColor"
+                      [cpPosition]="'top'"
+                      [cpOKButton]="true"
+                      [cpOKButtonClass]="'btn btn-theme'"
+                      [cpCancelButton]="true"
+                      [cpCancelButtonClass]="'btn btn-theme'"
+                      [cpSaveClickOutside]="false"
+                      [style.background]="theme.sidebarNavLinkActiveIconColor"
+                      (colorPickerSelect)="onColorSelect()"
+                      class="form-control form-control-sm pointer"/>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Link Active Background</label>
+                    <input [(colorPicker)]="theme.sidebarNavLinkActiveBg"
+                      [cpPosition]="'top'"
+                      [cpOKButton]="true"
+                      [cpOKButtonClass]="'btn btn-theme'"
+                      [cpCancelButton]="true"
+                      [cpCancelButtonClass]="'btn btn-theme'"
+                      [cpSaveClickOutside]="false"
+                      [style.background]="theme.sidebarNavLinkActiveBg"
+                      (colorPickerSelect)="onColorSelect()"
+                      class="form-control form-control-sm pointer"/>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Minimizer Background</label>
+                    <input [(colorPicker)]="theme.sidebarMinimizerBg"
+                      [cpPosition]="'top'"
+                      [cpOKButton]="true"
+                      [cpOKButtonClass]="'btn btn-theme'"
+                      [cpCancelButton]="true"
+                      [cpCancelButtonClass]="'btn btn-theme'"
+                      [cpSaveClickOutside]="false"
+                      [style.background]="theme.sidebarMinimizerBg"
+                      (colorPickerSelect)="onColorSelect()"
+                      class="form-control form-control-sm pointer"/>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="col-form-label">Minimizer Hover Background</label>
+                    <input [(colorPicker)]="theme.sidebarMinimizerHoverBg"
+                      [cpPosition]="'top'"
+                      [cpOKButton]="true"
+                      [cpOKButtonClass]="'btn btn-theme'"
+                      [cpCancelButton]="true"
+                      [cpCancelButtonClass]="'btn btn-theme'"
+                      [cpSaveClickOutside]="false"
+                      [style.background]="theme.sidebarMinimizerHoverBg"
+                      (colorPickerSelect)="onColorSelect()"
+                      class="form-control form-control-sm pointer"/>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="row align-items-start">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h5>Custom CSS</h5>
+            <ace-editor [mode]="'css'" [(text)]="theme.bodyCustomCSS"  #editor style="height:500px;"></ace-editor>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

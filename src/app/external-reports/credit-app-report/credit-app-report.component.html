@@ -1,0 +1,78 @@
+
+<div class="app flex-row">
+  <div class="container-fluid">
+    <div [ngClass]="{'container': isPreview}">
+    <div class="row">
+      <div *ngIf="isPreview && !isWizardForm" class="col-2 d-none d-lg-block d-xl-block position-relative">
+          <div #sidebar class="rounded shadow-nohover position-absolute mr-4 p-3"
+          style="
+          width: fit-content;
+          right:0px;
+          top:80px;
+          transition: top .5s;
+          -webkit-transition: top .5s; /* Safari 3.1 to 6.0 */">
+          <ul style="margin: 0px;text-decoration: none;list-style: none;" class="p-3">
+              <li>This</li>
+              <hr/>
+              <li>is</li>
+              <hr/>
+              <li>a</li>
+              <hr/>
+              <li>preveiw.</li>
+          </ul>
+        </div>
+      </div>
+      <div [ngClass]="{'col': !isPreview, 'col-md-12 col-lg-10': isPreview, 'mx-5': !isPreview}">
+        <div *ngIf="logoLoaded" [ngStyle]="{'text-align': logoAlignment}"><img  height="100" [src]="logoSrc"/></div>
+        <h2 class="mt-4 mb-4">Application for Credit</h2>
+        <div class="row">
+          <div class="col-6"><div class="text-muted">{{creditAppTemplate.templateName}}</div></div>
+          <div class="col-6">
+              <div class="text-muted text-right" *ngIf="submittedDate">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  Submitted:&nbsp;&nbsp;&nbsp;{{ submittedDate | date:'M/d/yy, h:mm:ss a' }}
+              </div>
+          </div>
+        </div>
+        <form [formGroup]="form">
+          <div *ngIf="isWizardForm && steps.length > 0">
+            <div class="row">
+              <div class="col-12">
+                <tabset #staticTabs>
+                  <tab *ngFor="let step of steps; let index = index;"
+                    [heading]="step.templateOptions.label"
+                    [active]="index == 0"
+                    [disabled]="activedStep < index"
+                    (selectTab)="onSelect(index)">
+                      <formly-form
+                      [form]="form.at(index)"
+                      [model]="model"
+                      [fields]="step.fieldGroup"
+                      [options]="options[index]">
+                    </formly-form>
+                  </tab>
+                </tabset>
+                
+              </div>
+                <div class="col-12 text-center mt-2">
+                    <button *ngIf="!isFirst" class="btn btn-info mr-2" type="button"  (click)="prevStep()">Previous</button>
+                    <button *ngIf="!isLast" class="btn btn-info" type="button" (click)="nextStep()" >Next</button>     
+                </div>
+            </div>
+          </div>
+          <formly-form *ngIf="!isWizardForm" [ngClass]="{print: !isPreview}" [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+        </form>
+        <!-- <div class="card-body">{{signature}}</div> -->
+        <!-- <div  *ngIf = "showContent" class="card">
+          <div class="card-header">Terms & Conditions</div>
+          <div class="card-body">{{termsConditions}} </div>
+        </div>
+        <div *ngIf = "showContent" [hidden] = "isCore"   class="card-body" >Signature: <span class="font-italic">{{signature}}</span></div>
+        <div  *ngIf = "showContent">
+            <button class="btn btn-primary btn-sm" [hidden] = "hiddenStatus()" (click) = "downloadSignaturePdf($event)">Download Document</button>
+        </div> -->
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

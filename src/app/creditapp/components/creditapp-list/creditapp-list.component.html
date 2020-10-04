@@ -1,0 +1,41 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col hidden-sm-down"></div>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-6">
+          <h3 class="mb-4">{{ title }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="!isLoading">
+    <div class="col-12">
+      <div class="list-group" >
+        <creditapp-list-item [creditApp]="creditApp" [clientAdmins]="clientAdmins" *ngFor="let creditApp of creditApps | paginate: {
+          itemsPerPage: 50,
+          currentPage: currentPage,
+          totalItems: totalRecords
+        }"></creditapp-list-item>
+      </div>
+    </div>
+    
+    <div class="col-12 pt-3">
+      <div class="row">
+        <div class="col-6">
+          Showing {{(50 * (currentPage -1))+ 1}} to {{currentPage == totalPages ?totalRecords: 50 * currentPage}} of {{totalRecords}} entries
+        </div>
+        <div class="col-6 text-right">
+          <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true" (pageChange)="pageChanged($event)"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="isLoading && creditApps.length ==0">
+    <div class="col-12">
+      <p class="text-muted text-center pt-5">
+        Fetching Applications...
+      </p>
+    </div>
+  </div>
+</div>

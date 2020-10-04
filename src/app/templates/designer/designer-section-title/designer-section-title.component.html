@@ -1,0 +1,25 @@
+<!-- section and card-heading classes are used for Dragula moves logic for section-bag defined in DesignerStepComponent. No style is defined. -->
+<div class="card-header" [ngClass]="{'section': isSection, 'fieldset': !isSection}">
+  <h5 class="card-heading text-nowrap" [ngClass]="{'section': isSection, 'fieldset': !isSection, 'edit': editFieldMode}" *ngIf="!editMode">{{ item.displayName.substring(0,50) }}
+    <i class="fa fa-pencil text-primary" aria-hidden="true" (click)="editTitle()"></i>
+    <span class="badge badge-secondary text-danger mapped" *ngIf="isMappedFieldset()" tooltip="Mapped system fieldsets cannot be removed." placement="top">M</span>
+    <span class="badge badge-secondary system" *ngIf="isSystemFieldset()" tooltip="System fieldset" placement="top">S</span>
+    <i *ngIf="!isSection && !isColumnLayout" class="fa fa-cog text-primary" aria-hidden="true" (click)="editParent()"></i>
+    <i class="fa fa-trash" aria-hidden="true" (click)="deleteParent()" [ngClass]="getDeleteIconStatus()"></i>
+  </h5>
+
+  <ng-container *ngIf="editMode">
+    <input type="text" class="form-control" [(ngModel)]="editValue"
+    (keyup.enter)="confirmTitleEdit()"
+    (keydown)="cancelKeyDown($event, 'back')"
+    />
+    <button class="btn btn-secondary btn-sm shadow-nohover confirm" type="button" (click)="confirmTitleEdit()">
+      <i class="fa fa-check" aria-hidden="true"></i>
+    </button>
+    <button class="btn btn-secondary btn-sm shadow-nohover cancel" type="button"
+    (click)="cancelTitleEdit()"
+    (keydown)="cancelKeyDown($event, 'forward')">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+  </ng-container>
+</div>

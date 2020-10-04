@@ -1,0 +1,251 @@
+// Custom global styles
+$gray-300: #c7cbd5;
+$gray-700: #3e515b;
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; 
+
+// Kendo grid columns render incorrectly in IE and Firefox.
+// For some reason, either SimpliQ or Kendo custom theme
+// is interferring with this setting so we're putting it back.
+.k-grid-header {
+  padding-right: 16px !important;
+}
+
+#nav-item-logo {
+  margin-left:15px!important;
+}
+
+// dragula styles
+div.field.gu-transit {
+  background-color: #f0f2f7;
+  border: 1px dashed $gray-300;
+  border-radius: 4px;
+  opacity: 0.6;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  filter: alpha(opacity=60);
+}
+
+div.field.gu-mirror {
+  border: 1px solid $gray-700;
+  border-radius: 4px;
+}
+
+// animated styles
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  animation-name: fadeOut;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInDown {
+  animation-name: fadeInDown;
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+.fadeOutUp {
+  animation-name: fadeOutUp;
+}
+
+
+// default theme colors
+:root {
+  --navbar-bg: #06537d;
+  --navbar-brand-bg: #044162;
+  --navbar-color: #ffffff;
+  --navbar-hover-color: #f8f8f8;
+  --navbar-active-color: #f5f5f5;
+  --sidebar-bg: #e4e6eb;
+  --sidebar-nav-title-color: #383e4b;
+  --sidebar-nav-link-color: #383e4b;
+  --sidebar-nav-link-icon-color: #9ba3b4;
+  --sidebar-nav-link-hover-color: #383e4b;
+  --sidebar-nav-link-hover-icon-color: #4e5668;
+  --sidebar-nav-link-hover-bg: #d2d6de;
+  --sidebar-nav-link-active-color: #383e4b;
+  --sidebar-nav-link-active-icon-color: #06537d;
+  --sidebar-nav-link-active-bg: #d2d6de;
+  --sidebar-minimizer-bg: #044162;
+  --sidebar-minimizer-hover-bg: #03314a;
+  --footer-bg: #e4e6eb;
+  --footer-color: #678898;
+}
+
+.signature-italics input{
+  font-style: italic;
+}
+
+.sidebar-nav {
+  opacity: .85;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
+input:focus, textarea:focus, select:focus, button{
+  outline: none;
+}
+
+.sticky-left {
+  position: sticky;
+  top: 500;
+}
+
+@media (min-width: 768px) {
+  .w-50px,.w-75px,.w-100px,.w-125px,.w-150px,.w-175px,.w-200px,.w-225px,.w-250px,.w-275px,.w-300px{
+    flex: none!important;
+  }
+  .w-50px {
+    width: 50px!important;
+  }
+  .w-75px {
+    width: 75px!important;
+  }
+  .w-100px {
+    width: 100px!important;
+  }
+  .w-125px {
+    width: 125px!important;
+  }
+  .w-150px {
+    width: 150px!important;
+  }
+  .w-175px {
+    width: 175px!important;
+  }
+  .w-200px {
+    width: 200px!important;
+  }
+  .w-225px {
+    width: 225px!important;
+  }
+  .w-250px {
+    width: 250px!important;
+  }
+  .w-275px {
+    width: 275px!important;
+  }
+  .w-300px {
+    width: 300px!important;
+  }
+}
+
+.max-h-100px {
+  max-height: 100px;
+}
+.max-h-125px {
+  max-height: 125px;
+}
+.max-h-150px {
+  max-height: 150px;
+}
+.max-h-175px {
+  max-height: 175px;
+}
+.max-h-200px {
+  max-height: 200px;
+}
+.max-h-225px {
+  max-height: 225px;
+}
+.max-h-250px {
+  max-height: 250px;
+}
+.max-h-275px {
+  max-height: 275px;
+}
+.max-h-300px {
+  max-height: 300px;
+}
+.max-h-325px {
+  max-height: 325px;
+}
+.max-h-350px {
+  max-height: 350px;
+}
+
+.print{
+  .max-h-100px,.max-h-125px,.max-h-150px,.max-h-175px,.max-h-200px,.max-h-225px,.max-h-250px,.max-h-275px,.max-h-300px,.max-h-325px,.max-h-350px {
+    max-height: inherit!important;
+  }
+}
+
+.app-body{
+  overflow-y: scroll;
+}
+
+
+.printSupport input[type='checkbox'] {
+  position: relative;
+  opacity: inherit;
+  left: -10px;
+  z-index: inherit;
+  width:inherit;
+  height:inherit;
+}
+
+.printSupport label::before {
+  display: none;
+}
+.printSupport label::after {
+  display: none;
+}
+
+/*
+=====================================================================
+  ngx-pagination design as bootstrap pagination
+=====================================================================
+*/
+.ngx-pagination a {
+  position: relative;
+  display: block;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #007bff;
+  background-color: #fff;
+}
+.ngx-pagination a, .ngx-pagination button, .ngx-pagination .disabled, .ngx-pagination .current {
+  border: 1px solid #dee2e6;
+  padding: 8px 12px !important;
+}
+.ngx-pagination li {
+  margin:0px !important;
+}
+
+.ngx-pagination a:focus, .ngx-pagination a:hover {
+  color: #0056b3;
+  text-decoration: none;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+  outline:none;
+}
+

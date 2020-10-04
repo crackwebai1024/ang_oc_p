@@ -1,0 +1,44 @@
+.custom-file-label {
+    cursor: pointer !important;
+  }
+
+  .img-preview {
+    height: 175px;
+    border: 1px dashed #cccccc;
+    background-repeat: no-repeat;
+    background-position-y: center;
+  }
+
+  .img-preview p {
+    color: #cccccc;
+  }
+
+  .preview-color-reset {
+    cursor: pointer;
+  }
+
+  .color-picker {
+    cursor: pointer;
+    width: 75px;
+  }
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  .background-print-preview {
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 250%;
+    height: 250%;
+    transform: rotate(-30deg);
+    filter: grayscale(100%);
+  }
+
+  .card, .social-box {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+.pointer{
+  cursor:pointer;
+}

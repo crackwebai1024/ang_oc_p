@@ -1,0 +1,26 @@
+<div class="card card-accent-primary shadow-nohover">
+  <designer-section-title [item]="section" [isSection]="true" [isColumnLayout]="false" [containsMappedFields]="doesSectionContainMappedFields()" (delete)="onDelete($event)">
+  </designer-section-title>
+  <div class="card-body" [dragula]="'field-bag'" [dragulaModel]="section.items" [attr.data-id]="section.id">
+    <designer-item *ngFor="let item of section.items" [attr.data-id]="item.id"
+      [item]="item"
+      [templateInstance]="templateInstance"
+      [dropdowns]="dropdowns"
+      (delete)="onDeleteField($event)">
+    </designer-item>
+  </div>
+</div>
+
+<ng-template #modalTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Confirm Delete</h4>
+  </div>
+  <div class="modal-body">
+    Are you sure you want to delete <b>{{ section.displayName }}</b>?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="confirmDelete()">Yes</button>
+    &nbsp;&nbsp;
+    <button type="button" class="btn btn-primary" (click)="declineDelete()">No</button>
+  </div>
+</ng-template>

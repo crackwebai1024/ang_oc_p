@@ -1,0 +1,50 @@
+<div id="top" class="animated fadeIn">
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-6 mb-3">
+              <h2>{{ title }}</h2>
+              <div class="text-muted">{{ templateName }}</div>
+            </div>
+          </div>
+          <div class="row form-loading" *ngIf="!formLoaded">
+            <div class="col-12 text-center pt-5">
+              <div class="spinner">
+                <sk-wandering-cubes></sk-wandering-cubes>
+              </div>
+            </div>
+          </div>
+
+          <form [formGroup]="form" class="animated fadeIn pb-4" *ngIf="formLoaded">
+            <div *ngIf="isWizardForm && steps.length > 0">
+              <div class="row">
+                <div class="col-12">
+                  <tabset #staticTabs>
+                    <tab *ngFor="let step of steps; let index = index;"
+                      [heading]="step.templateOptions.label"
+                      [active]="index == 0"
+                      [disabled]="activedStep < index"
+                      (selectTab)="onSelect(index)">
+                        <formly-form
+                        [form]="form.at(index)"
+                        [model]="model"
+                        [fields]="step.fieldGroup"
+                        [options]="options[index]">
+                      </formly-form>
+                    </tab>
+                  </tabset>
+                  
+                </div>
+                  <div class="col-12 text-center mt-2">
+                      <button *ngIf="!isFirst" class="btn btn-info mr-2" type="button" (click)="prevStep()">Previous</button>
+                      <button *ngIf="!isLast" class="btn btn-info" type="button" (click)="nextStep()" [disabled]="!form.at(activedStep).valid">Next</button>     
+                  </div>
+              </div>
+            </div>
+            <formly-form *ngIf="!isWizardForm" [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>

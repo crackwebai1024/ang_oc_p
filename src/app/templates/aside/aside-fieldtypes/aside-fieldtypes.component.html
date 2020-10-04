@@ -1,0 +1,5 @@
+<div class='fieldtype-source' [dragula]="'field-bag'" [dragulaModel]="items">
+  <div class="fieldtype" *ngFor="let item of items" [attr.data-id]="item.id">
+    {{ item.displayName }}
+  </div>
+</div>

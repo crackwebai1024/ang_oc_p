@@ -1,0 +1,29 @@
+<div class="animated fadeIn">
+  <div class="row mb-4">
+    <div class="col hidden-sm-down"></div>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-6">
+          <div class="display-4 whitespace-nowrap">Template Manager</div>
+        </div>
+        <div class="col-6 text-right align-self-center">
+          <div class="btn-group" dropdown>
+            <button id="button-basic"  type="button" class="btn btn-info" [routerLink]="['/templates/designer']">
+               Add New Template
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col hidden-sm-down"></div>
+  </div>
+  <div class="row mt-3">
+    <div class="col hidden-sm-down"></div>
+    <div class="col-12">
+      <ul class="summary-list" *ngFor="let template of templates">
+        <templates-list-item [template]="template" (deleteClick) ="refreshTemplates($event)"></templates-list-item>
+      </ul>
+    </div>
+    <div class="col hidden-sm-down"></div>
+  </div>
+</div>

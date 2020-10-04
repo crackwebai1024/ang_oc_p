@@ -1,0 +1,58 @@
+.settings {
+  position: relative;
+  z-index: 15001;
+}
+
+.section-heading > div > hr {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.section-heading > div > div {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+button.confirm {
+  position: absolute;
+  right: 29px;
+  margin-top: 15px;
+  z-index: 15002;
+}
+
+button.cancel {
+  position: absolute;
+  right: 0px;
+  margin-top: 15px;
+  z-index: 15002;
+}
+
+.empty-message {
+  margin: auto;
+  position: relative;
+  top: 15%;
+  width: 50%;
+  height: 50%;
+}
+
+.trash-doc{
+  display: inline-block;
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+  top: 14px;
+  font-size: 20px;
+}
+
+.doc-label {
+  margin: 7px 0px 2px 0px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.doc-required {
+  vertical-align: top;
+  margin-right:4px;
+  cursor: pointer;
+}

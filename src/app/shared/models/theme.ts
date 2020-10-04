@@ -1,0 +1,34 @@
+export interface Theme {
+    id: string;
+    clientID: string;
+    modifiedByUserName: string;
+    modifiedDate: string;
+    navbarBg: string;
+    navbarBrandBg: string;
+    navbarColor: string;
+    navbarHoverColor: string;
+    navbarActiveColor: string;
+    sidebarBg: string;
+    sidebarNavTitleColor: string;
+    sidebarNavLinkColor: string;
+    sidebarNavLinkIconColor: string;
+    sidebarNavLinkHoverColor: string;
+    sidebarNavLinkHoverIconColor: string;
+    sidebarNavLinkHoverBg: string;
+    sidebarNavLinkActiveColor: string;
+    sidebarNavLinkActiveIconColor: string;
+    sidebarNavLinkActiveBg: string;
+    sidebarMinimizerBg: string;
+    sidebarMinimizerHoverBg: string;
+    footerBg: string;
+    footerColor: string;
+    logoFileName: string;
+    logoPatternSize: string;
+    logoPatternOpacity: string;
+    logoAlignment: string;
+    active: string;
+    displayName: string;
+    isEdited: boolean;
+    logo: string;
+    bodyCustomCSS:string;
+}

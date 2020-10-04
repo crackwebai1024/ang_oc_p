@@ -1,0 +1,27 @@
+div.field-section-title {
+  padding: 7px;
+  padding-bottom: 2px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+div.field {
+  padding: 7px;
+  padding-left: 15px;
+  cursor: grab;
+}
+
+div.field:hover {
+  background-color: #f0f2f7;
+}
+
+span.badge.system {
+  position: absolute;
+  right: 15px;
+  margin-top: 5px;
+}
+
+hr {
+  margin-top: 0px;
+  margin-bottom: 3px;
+}

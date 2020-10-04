@@ -1,0 +1,13 @@
+<li [ngClass]="{'edit': editRoles}">
+  <div class="desc">
+    <h4 class="title"><i class="fa fa-user-circle text-muted"></i> &nbsp; {{ user.userName }}</h4>
+  </div>
+  <div class="actions">
+    <i class="fa fa-pencil-square-o" tooltip="Edit user roles." placement="top" container="body"
+      [delay]="500" (click)="editUserRoles()" [ngClass]="{'edit': editRoles}">
+    </i>
+  </div>
+</li>
+<div *ngIf="editRoles" class="animated fadeInDown edit-roles">
+  <user-edit [user]="user" (close)="closeUserRolesEdit()"></user-edit>
+</div>

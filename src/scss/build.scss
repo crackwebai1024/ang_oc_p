@@ -1,0 +1,55 @@
+// Order of imports are key. Overrides must be listed top down,
+// with original source included after overrides.
+
+
+
+//************************************************************************
+// Bootstrap Overrides
+//************************************************************************
+// SPA Boostrap overrides
+@import "node_modules/@creditpoint/spa/styles/scss/bootstrap-variables";
+
+// Our custom Bootstrap overrides
+@import "bootstrap-variables";
+
+// Import Bootstrap source files
+@import "node_modules/bootstrap/scss/bootstrap";
+//************************************************************************
+
+
+
+//************************************************************************
+// SimpliQ Overrides
+//************************************************************************
+// SPA core overrides
+@import "node_modules/@creditpoint/spa/styles/scss/core-variables";
+
+// Our custom SPA overrides
+@import "spa-variables";
+
+// SPA core styles
+@import "node_modules/@creditpoint/spa/styles/scss/core/core";
+//************************************************************************
+
+
+
+//************************************************************************
+// Angular2-Toaster Overrides
+//************************************************************************
+// Our custom Bootstrap overrides
+@import "toaster-variables";
+
+// Import Bootstrap source files
+@import "node_modules/angular2-toaster/src/toaster";
+//************************************************************************
+
+
+
+// SPA UI Kits
+@import "node_modules/@creditpoint/spa/styles/scss/uikits/uikits";
+
+// SPA custom styles
+@import "node_modules/@creditpoint/spa/styles/scss/spa-custom";
+
+// Our custom styles
+@import "style";

@@ -1,0 +1,23 @@
+<div class="form-wrapper">
+  <alert type="danger" *ngIf="errorSaving">
+    An error occurred updating the user.
+  </alert>
+  <alert type="warning" *ngIf="isSelf">
+    You are editing yourself and also an admin. You will not be able to remove your admin role.
+  </alert>
+  <!-- Uncomment form tag when ready to support full user edit. -->
+  <!-- <form [formGroup]="form">
+    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form">
+    </formly-form>
+  </form> -->
+</div>
+<div class="form-group roles">
+  <label class="form-control-label control-label">User Roles</label>
+  <kendo-multiselect [data]="roles" [textField]="'name'" [valueField]="'value'" [(ngModel)]="selectedRoles"></kendo-multiselect>
+</div>
+<button class="btn btn-secondary btn-sm shadow-nohover confirm" type="button" (click)="confirmEdit()">
+  <i class="fa fa-check" aria-hidden="true"></i>
+</button>
+<button class="btn btn-secondary btn-sm shadow-nohover cancel" type="button" (click)="cancelEdit()">
+  <i class="fa fa-times" aria-hidden="true"></i>
+</button>

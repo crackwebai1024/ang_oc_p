@@ -1,0 +1,10 @@
+<ul *ngFor="let theme of themes" class="list-group">
+  <li class="list-group-item" [ngClass]="{'bg-warning': theme.isEdited}">
+    <span class="display-5">{{ theme.displayName }}</span>
+    <i *ngIf="theme.displayName != 'default'" (click)="deleteThemeEvent($event, theme)" class="fa fa-trash float-right cursor-pointer ml-3"></i>
+    <i (click)="editThemeEvent($event, theme)" class="fa fa-edit float-right cursor-pointer"></i>
+  </li>
+</ul>
+<div class="float-right">
+    <button (click)="addThemeEvent($event)" class="btn btn-primary m-1"><i class="fa fa-plus"></i></button>
+</div>

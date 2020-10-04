@@ -1,0 +1,39 @@
+$gray-300: #c7cbd5;
+
+li {
+  position: relative;
+  height: 35px;
+  vertical-align: middle;
+  margin-bottom: 20px;
+}
+
+li .desc {
+	height: 35px;
+  border-bottom: 1px solid $gray-300;
+}
+
+li .desc .title {
+  padding: 0;
+	margin: 0;
+}
+
+li .actions {
+	position: absolute;
+	top: -4px;
+	right: 0px;
+  text-align: center;
+}
+
+li .actions i {
+  font-size: 26px;
+  color: rgb(65, 122, 153);
+  opacity: 0.6;
+  padding: 5px;
+}
+
+li .actions i:hover {
+  color: rgb(65, 122, 153);
+  opacity: 1;
+  cursor: pointer;
+  padding: 5px;
+}

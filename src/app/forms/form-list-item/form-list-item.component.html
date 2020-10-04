@@ -1,0 +1,40 @@
+<li>
+  <div class="row pt-2 pb-2">
+    <div class="col-md-6">
+        <span class="fa-stack">
+            <i class="fa fa-square fa-stack-2x"></i>
+            <i class="fa fa-file-text-o fa-stack-1x fa-inverse"></i>
+          </span>
+          <div class="desc">
+            <h4 class="title">{{ creditApp.customerName | titlecase }}</h4>
+            <div class="text-muted">{{ creditApp.templateName }}</div>
+          </div>
+    </div>
+    <div class="col-md-6">
+        <div class="actions">
+            <div class="position-relative w-100">
+              <div class="update pr-2">
+                  <span class ="status" [ngClass] = "getCSSClass(creditApp.status)">
+                  {{ creditApp.statusDisplayName | uppercase }}</span>
+                </div>
+              <i class="fa fa-pencil-square-o"
+                tooltip="Edit credit app." placement="top" container="body" [delay]="500"
+                *ngIf="(creditApp.status | lowercase) === 'unsubmitted'"
+                [routerLink]="['/form', creditApp.id]"></i>
+              <i class="fa fa-search"
+                tooltip="View credit app." placement="top" container="body" [delay]="500"
+                *ngIf="(creditApp.status | lowercase) !== 'unsubmitted'"
+                [routerLink]="['/form', creditApp.id]"></i>
+              <i class="fa fa-download" (click)="downloadPdf(creditApp.id, creditApp.templateName, creditApp.status, $event)"  [hidden]= "this.creditApp.docuSignEnvelopeID !== null"
+                tooltip="Download credit app." placement="top" container="body" [delay]="500"></i>
+              <i class="fa fa-file-pdf-o" (click)="downloadPDFDocusign($event)" [hidden]= "this.creditApp.docuSignEnvelopeID === null"
+                tooltip="Download Docusign credit app." placement="top" container="body" [delay]="500"></i>
+              <i class="fa fa-trash" (click)="deleteApplication($event)" [hidden]= "this.creditApp.statusDisplayName.toLowerCase() !== 'incomplete'"
+                tooltip="Delete incomplete credit apps." placement="top" container="body" [delay]="500"></i>
+                <div class="modified text-muted">Modified Date: {{ creditApp.createdDate | date:'M/d/y' }}</div>
+            </div>
+          </div>
+    </div>
+  </div>
+  <hr />
+</li>

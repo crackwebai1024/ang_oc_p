@@ -1,0 +1,72 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col hidden-sm-down"></div>
+
+    <div class="col-xl-8 col-md-10 col-sm-12">
+      <div class="card card-accent-secondary shadow-nohover">
+        <h4 class="card-header">Business Search</h4>
+        <div class="card-body">
+          <alert type="warning" dismissible="true">
+            Enter your business information below and click SEARCH to show matching results.
+            Select the matching business in Search Results and click CONTINUE to proceed to the credit application.
+            If you do not find a match, select NO MATCH FOUND.
+          </alert>
+
+          <alert type="danger" *ngIf="errMsg">{{ errMsg }}</alert>
+
+          <form [formGroup]="form">
+            <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form">
+            </formly-form>
+          </form>
+
+          <div class="text-right">
+            <button type="submit" class="btn btn-warning submit-button"
+              [disabled]="!form.valid"
+              (click)="searchCompanies()">
+              Search
+            </button>
+          </div>
+
+          <h5 class="mb-4">Search Results</h5>
+
+          <kendo-grid
+            [data]="gridView"
+            [height]="250"
+            [skip]="skip"
+            [pageSize]="pageSize"
+            [rowHeight]="35"
+            [scrollable]="'virtual'"           
+            [sortable]="{
+              allowUnsort: allowUnsort,
+              mode: multiple ? 'multiple' : 'single'
+              }"
+            [sort]="sort"
+            (sortChange)="sortChange($event)"
+            [selectable]="selectableSettings"
+            (selectionChange)= "onSelectionChange($event)"
+            >
+            <kendo-grid-column field="name" title="Business"></kendo-grid-column>
+            <kendo-grid-column field="address.street" title="Address"></kendo-grid-column>
+            <kendo-grid-column field="address.city" title="City"></kendo-grid-column>
+            <kendo-grid-column field="address.province" title="State / Province"></kendo-grid-column>
+          </kendo-grid>
+
+          <div class="text-right mt-3">
+            <button type="button" class="btn btn-info"
+              [disabled]="!gridRowSelected"
+              (click)="continue()">
+              Continue
+            </button>
+            <button type="button" class="btn btn-info ml-3"
+              [disabled]="!searchComplete"
+              (click)="noMatchFound()">
+              No Match Found
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col hidden-sm-down"></div>
+  </div>
+</div>

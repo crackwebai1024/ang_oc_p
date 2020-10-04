@@ -1,0 +1,76 @@
+// Bootstrap overrides
+
+$blue:                            #06537D;
+$red:                             #ff4f1a;
+$cyan:                            rgb(65, 122, 153);
+$yellow:                          #FFC939;
+$green:                           rgb(83, 185, 106);
+$indigo:                          #6610f2;
+$purple:                          #6f42c1;
+$pink:                            #e83e8c;
+$orange:                          #FF8B00;
+$teal:                            #20c997;
+
+$colors: (
+  blue:                           $blue,
+  indigo:                         $indigo,
+  purple:                         $purple,
+  pink:                           $pink,
+  red:                            $red,
+  orange:                         $orange,
+  yellow:                         $yellow,
+  green:                          $green,
+  teal:                           $teal,
+  cyan:                           $cyan,
+  white:                          $white,
+  gray:                           $gray-600,
+  gray-dark:                      $gray-800
+);
+
+$theme-colors: (
+  primary:                        $blue,
+  secondary:                      $gray-200,
+  success:                        $green,
+  info:                           $cyan,
+  warning:                        $yellow,
+  danger:                         $red,
+  light:                          $gray-100,
+  dark:                           $gray-800,
+
+  blue:                           $blue,
+  indigo:                         $indigo,
+  purple:                         $purple,
+  pink:                           $pink,
+  red:                            $red,
+  orange:                         $orange,
+  yellow:                         $yellow,
+  green:                          $green,
+  teal:                           $teal,
+  cyan:                           $cyan,
+
+  gray-100:                       $gray-100,
+  gray-200:                       $gray-200,
+  gray-300:                       $gray-300,
+  gray-400:                       $gray-400,
+  gray-500:                       $gray-500,
+  gray-600:                       $gray-600,
+  gray-700:                       $gray-700,
+  gray-800:                       $gray-800,
+  gray-900:                       $gray-900
+);
+
+// Override default opacity for disabled buttons for clearer distinction.
+$btn-disabled-opacity:            0.35;
+
+.btn {
+  &.disabled,
+  &:disabled {
+    opacity: $btn-disabled-opacity;
+    cursor: default;
+  }
+}
+
+formly-form .form-control-sm {
+  padding: 3px !important;
+  font-size: 14px !important;
+}

@@ -1,0 +1,28 @@
+
+  <div class="list-group-item rounded-0">
+    <a [routerLink]="'/creditapps/'+creditApp.id" class="list-group-item-action flex-column align-items-start rounded-0">
+      <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ creditApp.customerName | titlecase }} <small>{{ creditApp.templateName }}</small></h5>
+      <small class="text-muted">Modified Date: {{ creditApp.createdDate | date:'M/d/y' }}</small>
+    </div>
+    </a>
+    <hr />
+    <form>
+      <div class="row justify-content-end align-items-end">
+        <div class="col-lg-2 col-sm-12">
+          <label class="form-control-label">Assign Admin</label>
+          <select class="form-control form-control-sm" name="assignedAdmin" [(ngModel)]="creditApp.assignedAdmin" (change)="updateAssignedAdmin()">
+            <option *ngFor="let item of clientAdmins" [value]="item.id" >{{ item.firstName }} {{ item.lastName }}</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-sm-12">
+          <label class="form-control-label">Update Status</label>
+          <select class="form-control form-control-sm" name="status" [(ngModel)]="creditApp.status" (change)="updateStatus()">
+            <option *ngFor="let item of appStatuses" [value]="item.key" >{{ item.label | uppercase }}</option>
+          </select>
+        </div>
+        <div class="col-lg-1 col-sm-12" *ngIf="creditApp.status == 'ApprovedValidationNeeded'">
+          <a class="btn btn-primary btn-sm btn-block" [routerLink]="'/creditapps/form/'+creditApp.id">Edit Application</a>
+        </div>
+      </div>
+    </form>

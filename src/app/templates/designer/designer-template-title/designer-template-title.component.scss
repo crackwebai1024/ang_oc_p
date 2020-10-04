@@ -1,0 +1,47 @@
+$white: #fff;
+$gray-300: #c7cbd5;
+
+h3 {
+  padding: 0;
+  margin: 0;
+
+  i {
+    margin-left: 10px;
+    display: none;
+  }
+}
+
+h3:hover {
+  i {
+    display: inline-block;
+  }
+}
+
+i:hover {
+  cursor: pointer;
+}
+
+input[type="text"] {
+  font-size: 17.5px;
+  font-weight: 500;
+  line-height: 21px;
+}
+
+input.form-control {
+  position: relative;
+  z-index: 15001;
+}
+
+button.confirm {
+  position: absolute;
+  top: 17px;
+  right: 46px;
+  z-index: 15002;
+}
+
+button.cancel {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  z-index: 15002;
+}

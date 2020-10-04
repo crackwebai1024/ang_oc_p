@@ -1,0 +1,14 @@
+<div>
+  <alert type="warning" dismissible="true" *ngIf="item.isDuplicate">
+    You have duplicated a field on this template. We have changed the field name for you. You can change it to some other unique value if you prefer. You should also consider changing the display name.
+  </alert>
+</div>
+<ng-template dynamicComponentHost></ng-template>
+<button class="btn btn-secondary btn-sm shadow-nohover confirm" type="button"
+  (click)="confirmFieldEdit()" [disabled]="!isFieldConfigValid()">
+  <i class="fa fa-check" aria-hidden="true"></i>
+</button>
+<button class="btn btn-secondary btn-sm shadow-nohover cancel" type="button"
+  (click)="cancelFieldEdit()">
+  <i class="fa fa-times" aria-hidden="true"></i>
+</button>

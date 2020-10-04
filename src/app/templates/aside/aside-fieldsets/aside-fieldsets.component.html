@@ -1,0 +1,6 @@
+<div class='fieldset-source' [dragula]="'field-bag'" [dragulaModel]="items">
+  <div class="fieldset" *ngFor="let item of items" [attr.data-id]="item.id">
+    {{ item.displayName }}
+    <span class="badge badge-secondary system" *ngIf="item.isSystemField" tooltip="System field" placement="left">S</span>
+  </div>
+</div>

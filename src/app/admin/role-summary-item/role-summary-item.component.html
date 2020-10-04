@@ -1,0 +1,9 @@
+<li>
+  <div class="desc">
+    <h4 class="title"><i class="fa fa-user-circle text-muted"></i> &nbsp; {{ role.name  | titlecase }}</h4>
+  </div>
+  <div class="actions">
+    <i class="fa fa-pencil-square-o" tooltip="Edit role." placement="top" container="body" [delay]="500" (click)=editRole()>
+    </i>
+  </div>
+</li>

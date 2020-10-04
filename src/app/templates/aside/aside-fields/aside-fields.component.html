@@ -1,0 +1,15 @@
+<div class="field-section-title">System Fields</div>
+<div class='field-source' [dragula]="'field-bag'" [dragulaModel]="systemFields">
+  <div class="field" *ngFor="let field of systemFields" [attr.data-id]="field.id">
+    {{ field.displayName }}
+    <span class="badge badge-secondary system" *ngIf="field.isSystemField" tooltip="System field" placement="left">S</span>
+  </div>
+</div>
+<hr/>
+<div class="field-section-title">Global Fields</div>
+<div class='field-source' [dragula]="'field-bag'" [dragulaModel]="globalFields">
+  <div class="field" *ngFor="let field of globalFields" [attr.data-id]="field.id">
+    {{ field.displayName }}
+    <span class="badge badge-secondary system" *ngIf="field.isSystemField" tooltip="System field" placement="left">S</span>
+  </div>
+</div>

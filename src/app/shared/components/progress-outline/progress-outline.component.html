@@ -1,0 +1,60 @@
+<ng-template #progressOutlineItemTemplate let-progressOutlineItem="progressOutlineItem">
+
+  <!-- I made these configurable so devs can easily change when Don changes his mind. -->
+  <li *ngIf="((progressOutlineItem.isRoot && showRoot)
+    || (progressOutlineItem.isStep && showSteps)
+    || (!progressOutlineItem.isRoot && !progressOutlineItem.isStep))"
+    style="list-style-type: none;">
+    <div class="d-flex">
+      <a style="max-width: 180px;min-width:115px;padding:12px 0px 12px 10px;overflow: hidden;"
+      [attr.title]="progressOutlineItem.label"
+      [ngClass]="{
+          'nav-link': true,
+          'active': (selectedAnchor == progressOutlineItem.anchor),
+          'w-100': true,
+          'text-left': true,
+          'text-nowrap': true,
+          'fade-out': true
+        }" (click)="onProgressOutlineItemClick($event, progressOutlineItem.anchor)">
+        {{ progressOutlineItem.label }}
+      </a>
+      <i
+        [ngClass]="{
+          'btn': true,
+          'fa': true,
+          'fa-check-circle': progressOutlineItem.isValid == true,
+          'fa-exclamation-triangle': progressOutlineItem.isValid == false
+        }"
+        [ngStyle]="{
+          'color': progressOutlineItem.isValid == true ? (isExisting ? 'green' : '#e4e4e4') : 'orange',
+          'float': 'right',
+          'padding' : '12px 9px'
+        }">
+      </i>
+    </div>
+  </li>
+
+  <ul *ngIf="progressOutlineItem.children && progressOutlineItem.children.length > 0" class="nav nav-pills flex-column ml-2"
+    style="list-style: none; padding-left: 0px;">
+    <ng-template *ngIf="progressOutlineItem.children && progressOutlineItem.children.length > 0" ngFor let-outlineItem
+      [ngForOf]="progressOutlineItem.children">
+
+      <ng-template [ngTemplateOutlet]="progressOutlineItemTemplate" [ngTemplateOutletContext]="{
+          progressOutlineItem: outlineItem
+        }">
+      </ng-template>
+
+    </ng-template>
+  </ul>
+</ng-template>
+
+<div *ngIf="progressOutline">
+  <ul *ngIf="progressOutline.children && progressOutline.children.length > 0" class="nav nav-pills flex-column"
+    style="list-style: none; padding-left: 0px; padding-top: 10px; padding-bottom: 10px;">
+
+    <ng-template [ngTemplateOutlet]="progressOutlineItemTemplate" [ngTemplateOutletContext]="{
+        progressOutlineItem: progressOutline
+      }">
+    </ng-template>
+  </ul>
+</div>

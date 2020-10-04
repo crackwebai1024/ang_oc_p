@@ -1,0 +1,23 @@
+div.grid-buttons {
+  //float: right;
+}
+
+div.grid-buttons > button:first-child {
+  margin-right: 5px;
+}
+
+
+// ViewEncapsulation.None was needed to override Kendo styles.
+
+.k-grid {
+  margin-top: 5px;
+}
+
+input.k-textbox {
+  height: 25px !important;
+  font-size: 14px;
+}
+
+tr.k-grid-norecords {
+  font-size: 14px;
+}

@@ -1,0 +1,14 @@
+div.fieldset {
+  padding: 7px;
+  cursor: grab;
+}
+
+div.fieldset:hover {
+  background-color: #f0f2f7;
+}
+
+span.badge.system {
+  position: absolute;
+  right: 15px;
+  margin-top: 5px;
+}

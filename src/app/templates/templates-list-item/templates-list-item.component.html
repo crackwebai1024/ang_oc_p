@@ -1,0 +1,32 @@
+<li>
+
+  <div class="desc">
+    <h5 class="title"><i class="fa fa-list-alt text-muted"></i>  &nbsp; {{ template.templateName }}</h5>
+    <div class="text-muted">Last modified by {{ template.modifiedByUserFullName }} on {{template.modifiedDate | date:'M/d/y'}} <b class="ml-3">Theme: {{template.themeName}}</b> </div>
+  </div>
+
+  <div class="actions">
+      <i class="fa fa-link link"
+      tooltip="Link to give clients." (click)="copyMessage(template.id)" placement="top" container="body" [delay]="500"
+      ></i>
+    <i class="fa fa-pencil-square-o update" [routerLink]="['/templates/designer', template.id]"
+      tooltip="Edit template." placement="top" container="body" [delay]="500"
+      ></i>
+    <i class="fa fa-trash" (click)="deleteTemplate($event, template, modalTemplate)"
+      tooltip="Delete template." placement="top" container="body" [delay]="500"
+    ></i>
+  </div>
+  <br><br>
+<ng-template #modalTemplate>
+  <!-- <div class="modal-header">
+    <h4 class="modal-title pull-left">Delete Confirmation</h4>
+  </div> -->
+  <div class="modal-body">
+   <p> Are you sure you want to delete  <b> {{template.templateName}} </b>?</p>
+
+    <button type="button" class="btn btn-default" (click)="confirm(template)">Yes</button>
+    &nbsp;&nbsp;
+    <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+  </div>
+</ng-template>
+</li>

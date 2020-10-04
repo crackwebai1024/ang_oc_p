@@ -1,0 +1,39 @@
+// SPA Overrides
+
+// $navbar-brand-logo:        url('../assets/img/cap-logo-highlight.png');
+$navbar-brand-logo:        url('../assets/img/cps-logo.png');
+$navbar-brand-minimized-logo:  url('../assets/img/cps-logo.png');
+$navbar-brand-bg:          #044162;
+$navbar-brand-logo-size:   85px auto;
+
+// Sidebar
+// $sidebar-color:                       #d0d4de;
+$sidebar-bg:                          $gray-200;
+$sidebar-width:                       220px;
+$mobile-sidebar-width:                220px;
+
+// Sidebar Navigation
+$sidebar-nav-title-padding-y:         .95rem;
+$sidebar-nav-title-color:             $gray-900;
+
+$sidebar-nav-link-color:              $gray-800;
+$sidebar-nav-link-active-color:       $gray-800;
+$sidebar-nav-link-icon-color:         lighten($gray-800, 40%);
+$sidebar-nav-link-active-bg:          darken($sidebar-bg, 6%);
+$sidebar-nav-link-active-icon-color:  theme-color("primary");
+
+$sidebar-nav-link-hover-bg:           darken($sidebar-bg, 6%);
+$sidebar-nav-link-hover-color:        $gray-800;
+$sidebar-nav-link-hover-icon-color:   lighten($gray-800, 10%);
+
+$sidebar-nav-dropdown-bg:             darken($sidebar-bg, 5%);
+
+
+$sidebar-minimizer-bg:              #044162;
+$sidebar-minimizer-hover-bg:          darken(#044162, 5%);
+
+
+// Footer
+// $footer-bg:               #eeeeef;
+$footer-bg:                $gray-200;
+$footer-color:             $gray-500;

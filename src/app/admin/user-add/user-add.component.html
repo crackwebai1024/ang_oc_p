@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{title}}</h4>
+</div>
+<div class="modal-body">
+
+  <div *ngIf="submitting" class="row align-items-center submitting">
+    <div class="spinner">
+      <h5 class="text-center">Adding user...</h5>
+      <sk-fading-circle [color]="'#06537d'"></sk-fading-circle>
+    </div>
+  </div>
+
+  <alert *ngIf="errorMessage" type="danger" dismissible="true">{{ errorMessage }}</alert>
+
+  <div *ngIf="addMode === 2" class="form-group">
+    <label class="form-control-label control-label">Search by username / email address</label>
+    <input [(ngModel)]="selected" [typeahead]="cpxUsers" typeaheadOptionField="userName" class="form-control"
+    (typeaheadOnSelect)="typeaheadOnSelect($event)" placeholder="Enter search here">
+  </div>
+
+  <form *ngIf="addMode === 1" [formGroup]="form">
+    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form">
+    </formly-form>
+  </form>
+
+  <div class="form-group">
+    <label class="form-control-label control-label">User Roles</label>
+    <kendo-multiselect [data]="roles" [textField]="'name'" [valueField]="'value'" [(ngModel)]="selectedRoles"></kendo-multiselect>
+  </div>
+</div>
+<div class="modal-footer">
+  <ng-container *ngIf="addMode === 2">
+    <button [disabled]="!selected" type="button" class="btn btn-primary" (click)="add()">Add</button>
+  </ng-container>
+  <ng-container *ngIf="addMode === 1">
+    <button [disabled]="submitting || !form.valid" type="button" class="btn btn-primary" (click)="add()">Add</button>
+  </ng-container>
+  &nbsp;&nbsp;
+  <button [disabled]="submitting" type="button" class="btn btn-primary" (click)="cancel()">Cancel</button>
+</div>

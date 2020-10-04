@@ -1,0 +1,12 @@
+div.card, div.card-body {
+  cursor: default !important;
+}
+
+div.card-body {
+  padding: 0.75rem;
+  // background-color: #f8f8f8;
+}
+
+div.card-body.drag-over {
+  border: 2px dashed gray;
+}

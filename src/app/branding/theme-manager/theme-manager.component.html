@@ -1,0 +1,24 @@
+
+<div class="display-4">Theme Manager</div>
+
+<div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+
+    </div>
+    <div class="col-1"></div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-4">
+      <theme-list (editMessage)="changeTheme($event)" [events]="eventsSubject.asObservable()"></theme-list>
+    </div>
+    <div class="col-8" style="margin-top:-35px;">
+      <theme-details [theme]="theme" [defaultTheme]="defaultTheme" (themeEditedEvent)="themeEdited()">
+      </theme-details>  
+    </div>
+  </div>
+</div>
+
+
+

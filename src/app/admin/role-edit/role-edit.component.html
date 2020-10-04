@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Add Users to Role - {{ role.name }}</h4>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <label class="form-control-label control-label">Search by username / email address</label>
+    <input [(ngModel)]="selected" [typeahead]="users" typeaheadOptionField="userName" class="form-control"
+    (typeaheadOnSelect)="addUserToRole($event)" placeholder="Enter search here">
+  </div>
+  <br/>
+  <ul class="list-group" *ngFor="let user of usersInRole">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      {{ user.userName }}
+      <i class="fa fa-trash" (click)="removeUserFromRole(user)"></i>
+    </li>
+  </ul>
+</div>
+<div class="modal-footer">
+  <button type="button"  [disabled]="disableStatus" class="btn btn-primary" (click)="addRoles()">Add</button>
+  <button type="button" class="btn btn-primary" (click)="done()">Cancel</button>
+</div>

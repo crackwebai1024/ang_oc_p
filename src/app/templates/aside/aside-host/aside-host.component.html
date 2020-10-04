@@ -1,0 +1,26 @@
+<tabset class="animated fadeIn">
+  <tab>
+    <ng-template tabHeading><i class="icon-list" tooltip="Fields" placement="right"></i></ng-template>
+    <div class="callout m-0 py-2 text-muted text-center bg-light text-uppercase">
+      <small><b>Fields</b></small>
+    </div>
+    <hr class="transparent mx-3 my-0">
+    <cap-aside-fields [systemFields]="systemFields" [globalFields]="globalFields"></cap-aside-fields>
+  </tab>
+  <tab>
+    <ng-template tabHeading><i class="icon-grid" tooltip="Field Groups" placement="right"></i></ng-template>
+    <div class="callout m-0 py-2 text-muted text-center bg-light text-uppercase">
+      <small><b>Field Groups</b></small>
+    </div>
+    <hr class="transparent mx-3 my-0">
+    <cap-aside-fieldsets [items]="fieldGroupItems"></cap-aside-fieldsets>
+  </tab>
+  <tab>
+    <ng-template tabHeading><i class="icon-settings" tooltip="Field Types" placement="right"></i></ng-template>
+    <div class="callout m-0 py-2 text-muted text-center bg-light text-uppercase">
+      <small><b>Field Types</b></small>
+    </div>
+    <hr class="transparent mx-3 my-0">
+    <cap-aside-fieldtypes></cap-aside-fieldtypes>
+  </tab>
+</tabset>

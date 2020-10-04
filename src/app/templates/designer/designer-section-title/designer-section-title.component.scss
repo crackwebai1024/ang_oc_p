@@ -1,0 +1,116 @@
+$white: #fff;
+$gray-300: #c7cbd5;
+
+.card-header, .card-heading {
+  cursor: grab !important;
+}
+
+div.card-header.fieldset {
+  padding: 7px 10px;
+}
+
+h5.card-heading.fieldset {
+  font-size: 15px;
+}
+
+h5 {
+  padding: 0;
+  margin: 0;
+
+  i {
+    display: none;
+  }
+
+  i.fa-pencil {
+    margin-left: 10px;
+  }
+
+  span.badge {
+    display: none;
+  }
+
+  span.badge.mapped {
+    position: absolute;
+    right: 80px;
+    margin-top: 2px;
+  }
+
+  span.badge.system {
+    position: absolute;
+    right: 55px;
+    margin-top: 2px;
+  }
+
+  i.fa-cog {
+    position: absolute;
+    right: 30px;
+    margin-top: 3px;
+  }
+
+  i.fa-trash {
+    position: absolute;
+    right: 10px;
+    margin-top: 3px;
+  }
+
+  i.fa-trash.system {
+    color: #D0D0D0;
+  }
+
+  i.fa-check {
+    margin-left: 10px;
+  }
+
+  i.fa-times {
+    margin-left: 10px;
+  }
+}
+
+h5:hover {
+  i {
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  i.fa-trash.system {
+    cursor: default;
+  }
+
+  span.badge {
+    display: inline-block;
+    cursor: default;
+  }
+}
+
+h5.edit, h5.edit:hover {
+  i {
+    display: none;
+  }
+
+  span.badge {
+    display: none;
+  }
+}
+
+input[type="text"] {
+  font-size: 17.5px;
+  font-weight: 500;
+  line-height: 21px;
+}
+
+input.form-control {
+  position: relative;
+  z-index: 15001;
+}
+
+button.confirm {
+  position: absolute;
+  right: 49px;
+  z-index: 15002;
+}
+
+button.cancel {
+  position: absolute;
+  right: 20px;
+  z-index: 15002;
+}

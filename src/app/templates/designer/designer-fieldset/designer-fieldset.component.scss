@@ -1,0 +1,40 @@
+div.card, div.card-body {
+  cursor: default !important;
+}
+
+div.card {
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
+
+div.card.edit {
+  margin-bottom: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  z-index: 15001;
+
+  span.badge {
+    display: none;
+  }
+}
+
+div.card.edit:hover h5 i {
+  display: none;
+}
+
+div.card-body {
+  padding: 0.45rem;
+}
+
+div.card-body.drag-over {
+  border: 2px dashed gray;
+}
+
+div.card.config {
+  margin: 0px;
+  border-radius: 0px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  padding: 10px;
+  z-index: 15002;
+}

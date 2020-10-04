@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-8">
+    <form [formGroup]="form">
+      <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form">
+      </formly-form>
+    </form>
+  </div>
+
+  <div class="col-4">
+    <label class="form-control-label control-label">List Items</label>
+
+    <div class="grid-buttons text-right">
+      <kendo-dropdownlist class="w-100 pr-1" [valuePrimitive]="true" (valueChange)="valueChange($event)">
+      </kendo-dropdownlist>
+      <div class="mt-1">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="addHandler()">Add</button>
+        <button type="button" class="btn btn-secondary btn-sm ml-1"
+          [disabled]="!isInEditingMode" (click)="cancelHandler()">Cancel</button>
+      </div>
+    </div>
+
+    <kendo-grid
+      (cellClick)="editClick($event)"
+      height="180">
+      <kendo-grid-column field="text" title="Text" width="80"
+        [headerStyle]="{'line-height': '16px', 'font-size': '14px', 'padding': '7px 10px'}"
+        [style]="{'line-height': '70%', 'font-size': '14px'}">
+      </kendo-grid-column>
+      <kendo-grid-column field="value" title="Value" width="80"
+        [headerStyle]="{'line-height': '16px', 'font-size': '14px', 'padding': '7px 10px'}"
+        [style]="{'line-height': '70%', 'font-size': '14px'}">
+      </kendo-grid-column>
+    </kendo-grid>
+
+  </div>
+</div>

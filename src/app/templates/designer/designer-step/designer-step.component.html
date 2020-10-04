@@ -1,0 +1,72 @@
+<div class="animated fadeIn">
+  <div class="row mb-4 align-items-start">
+
+    <div class="col-5">
+      <designer-template-title [template]="templateInstance"></designer-template-title>
+      <small class="text-muted">Last Updated: {{ templateInstance.modifiedDate | date:'MM/dd/yyyy h:mma' | lowercase }}</small>
+    </div>
+
+    <div class="col-7 text-right align-self-end">
+      <div class="btn-group" role="group" aria-label="Basic example" dropdown placement="bottom right">
+        <button type="button" class="btn btn-secondary" (click)="addSection(0)">Add Section</button>
+        <button type="button" class="btn btn-secondary" (click)="editSettings()">Settings</button>
+        <button type="button" class="btn btn-secondary" (click)="saveTemplate()" [disabled]="!formChanged">Save Template</button>
+        <button type="button" class="btn btn-secondary" (click)="preview()" [disabled]="formChanged">Preview</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="editSettingsMode" class="row">
+    <div class="col">
+      <div class="animated fadeInDown card card-accent-primary shadow-nohover settings">
+        <div class="card-header">
+          <h5>Template Settings</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="settingsForm">
+            <formly-form [model]="settingsModel" [fields]="settingsFields" [options]="settingsOptions" [form]="settingsForm">
+            </formly-form>
+          </form>
+
+          <button class="btn btn-secondary btn-sm shadow-nohover confirm" type="button"
+            [disabled]="!settingsForm.valid"
+            (click)="confirmEditSettings()">
+            <i class="fa fa-check" aria-hidden="true"></i>
+          </button>
+          <button class="btn btn-secondary btn-sm shadow-nohover cancel" type="button"
+          (click)="cancelEditSettings()"
+          (keydown)="cancelKeyDown($event, 'forward')">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col" [dragula]="'section-bag'">
+      <designer-section *ngFor="let section of templateInstance.steps[0].sections"
+        [section]="section"
+        [templateInstance]="templateInstance"
+        [dropdowns]="dropdowns"
+        (deleteOption)="onDeleteSection($event)">
+      </designer-section>
+    </div>
+  </div>
+</div>
+<div>
+</div>
+
+<ng-template #modalTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Save Changes</h4>
+  </div>
+  <div class="modal-body">
+    Would you like to save your changes to this template before leaving?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="confirmSave()">Yes</button>
+    &nbsp;&nbsp;
+    <button type="button" class="btn btn-primary" (click)="declineSave()">No</button>
+  </div>
+</ng-template>
